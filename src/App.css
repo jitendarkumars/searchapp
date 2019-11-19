@@ -1,0 +1,259 @@
+h4 {
+  color: yellowgreen;
+}
+input {
+  width: 100%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: all;
+}
+input:focus {
+  outline: 0;
+  border-color: #64ac15;
+}
+input:focus + .input-icon i {
+  color: #7ed321;
+}
+input:focus + .input-icon:after {
+  border-right-color: #7ed321;
+}
+input:checked + label:after {
+  opacity: 0.7;
+}
+.input-group {
+  margin-bottom: 1em;
+  zoom: 1;
+}
+.input-group:before, .input-group:after {
+  content: "";
+  display: table;
+}
+.input-group:after {
+  clear: both;
+}
+.input-group-icon {
+  position: relative;
+}
+.input-group-icon input {
+  padding-left: 4.4em;
+}
+.input-group-icon .input-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3.4em;
+  height: 3.4em;
+  line-height: 3.4em;
+  text-align: center;
+  pointer-events: none;
+}
+.input-group-icon .input-icon:after {
+  position: absolute;
+  top: 0.6em;
+  bottom: 0.6em;
+  left: 3.4em;
+  display: block;
+  border-right: 1px solid #e5e5e5;
+  content: "";
+  transition: all;
+}
+.input-group-icon .input-icon i {
+  transition: all;
+}
+
+.container {
+  max-width: 500px !important;
+  padding: 1em 3em 2em 3em;
+  margin: 5em auto;
+  background-color: white;
+  border-radius: 4.2px;
+  margin-top: 130px;
+  border: 1px solid #f0eaea;
+}
+.header-container {
+  min-width: 100%;
+  padding: 0px 50px !important;
+  margin: 0% !important; 
+}
+.row {
+  zoom: 1;
+  padding: 10px 40px;
+}
+.row:before, .row:after {
+  content: "";
+  display: table;
+}
+.row:after {
+  clear: both;
+}
+.col-half {
+  padding-right: 10px;
+  float: left;
+  width: 50%;
+}
+.col-half:last-of-type {
+  padding-right: 0;
+}
+.col-third {
+  padding-right: 10px;
+  float: left;
+  width: 33.333333333333%;
+}
+.col-third:last-of-type {
+  padding-right: 0;
+}
+
+.form-multiple{
+  width: 50%
+}
+.mobileCode{
+  max-width: 200px;
+}
+
+select {
+  width: 100%;
+  padding: 1em;
+  line-height: 1.4;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px;
+  transition: all;
+}
+
+
+/* header */
+.navbar {
+  border: 0;
+  font-size: 14px;
+  transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  padding: 0;
+  background: #ff742b;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+}
+
+.navbar .navbar-brand {
+  font-weight: 600;
+  margin: 5px 0px;
+  padding: 20px 15px;
+  font-size: 14px;
+  color: #66615B;
+  text-transform: uppercase;
+}
+.navbar .navbar-nav .nav-item .nav-link {
+  text-transform: uppercase;
+  color: black;
+}
+
+.navbar .navbar-nav .nav-item .nav-link p {
+  margin: 0px 0px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.5em;
+  padding: 15px 0;
+}
+
+.navbar .navbar-nav .nav-item .nav-link.btn {
+  margin: 15px 3px;
+  padding: 9px;
+}
+
+.navbar .navbar-nav .nav-item .nav-link [class^="fa"] {
+  font-size: 17px;
+  position: relative;
+  right: 5px;
+}
+
+.navbar .navbar-nav .dropdown-menu {
+  border-radius: 12px;
+  margin-top: 1px;
+}
+
+.navbar .navbar-nav .nav-item .btn i {
+  color: #FFFFFF;
+}
+
+.navbar .navbar-collapse .nav-item .nav-link p {
+  display: inline;
+}
+
+.navbar .navbar-collapse .nav-item .dropdown-item i {
+  margin: 0 10px;
+  margin: 0 10px 0px 5px;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+.navbar .navbar-collapse.show .navbar-nav .nav-item {
+  padding-right: 10px;
+}
+
+.navbar .navbar-collapse:after {
+  background-color: #FFFCF5;
+}
+ /* header end  */
+
+ button {
+   height: 3.5em;
+   background-color: #ff742b !important;
+ }
+
+ .invalid{
+   color: red;
+   margin: -15px 0 10px 0;
+ }
+
+
+ .SearchHeader_container {
+  position: relative;
+  display: inline-block;
+  width: calc(100% - 324px);
+  margin-right: 16px;
+  border:1px solid #ff742b;
+}
+
+.SearchHeader .SearchIcon {
+  position: absolute;
+  top: 5px;
+  left: 12px;
+  color: #ff742b;
+  font-size: 24px;
+  pointer-events: none;
+}
+.SearchHeader .SearchInput {
+  border-radius: 0;
+  border: none;
+  height: 50px;
+  width: 100%;
+  box-shadow: none;
+  padding: 16px 16px 16px 54px;
+  font-weight: 300;
+  color: rgba(0,0,0,.75);
+}
+.SearchHeader .SearchIcon svg {
+  width: 24px;
+  height: 24px;
+}
+
+
+.dashboard-container{
+  margin-top: 70px;
+  padding: 40px 70px 20px 70px;
+}
+
+.feeds-card{
+  border: 1px solid #b8b8b8;
+  margin-top: 20px;
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+}
+.feeds-info{
+  border-bottom: 1px solid #ff742b;
+  padding: 10px;
+}
