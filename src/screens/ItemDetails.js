@@ -1,16 +1,22 @@
 import React ,{useEffect,useState} from 'react'
 import CommentItem from '../components/CommentItem'
+import { useHistory } from 'react-router/esm/react-router';
 function ItemDetails(props) {
     const {id} = props.match.params
     const [itemData, setItemData] = useState([])
+    let history = useHistory();
     console.log(id)
     useEffect(() => {
+          if(!localStorage.getItem('userName')){
+            history.push('/');
+          }
+          props.showLoader()
      getDetails();   
     }, [])
    const getDetails=async()=>{
             const reps=await fetch(`http://hn.algolia.com/api/v1/items/${id}`)
             const respData = await reps.json()
-            console.log(respData)
+            props.hideLoader()
             setItemData(respData)
     }
     return (

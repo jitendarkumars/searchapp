@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Input from '../components/Input';
 import useForm from 'react-hook-form'
+import { useHistory } from 'react-router/esm/react-router';
+
+import {toast} from 'react-toastify';
 export default function SignupScreen(props) {
     const { register, handleSubmit, watch, errors } = useForm({ submitFocusError: true })
-    const onSubmit = data => { console.log(data) }
+   
+    let history = useHistory();
+    useEffect(() => {
+      if(localStorage.getItem('userName')){
+        history.push('/dashboard');
+      }
+    }, )
+    const onSubmit = async(data) => {       
+        const responseData=await fetch(`http://localhost:8080/api/users/signup`,
+        {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+          console.log(responseData.status)
+        if(responseData.status!=200){
+          let jsonData =await responseData.json()
+          toast.error(jsonData.error, {
+            position: toast.POSITION.TOP_CENTER
+          });
+        }else{
+       let jsonData=   await responseData.json()
+          localStorage.setItem("userName",jsonData.data.userName);
+          toast.success("Logged In Successfully", {
+            position: toast.POSITION.TOP_CENTER
+          });
+        }
+     }
+  
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="container">

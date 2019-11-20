@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useHistory } from 'react-router/esm/react-router';
 
 function HistoryScreen() {
+    let history = useHistory();
+    useEffect(() => {
+        if(!localStorage.getItem('userName')){
+            history.push('/');
+          }
+    })
+  
     let historyData=JSON.parse(localStorage.getItem("historyData"))||[]
     const reslt=(
         historyData.length>0? (

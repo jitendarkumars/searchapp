@@ -7,8 +7,9 @@ function Header(props) {
             <nav className="navbar navbar-expand-lg fixed-top  " color-on-scroll="300" >
                 <div className="container header-container">
                     <a className="navbar-brand" rel="tooltip" title="Login And Signup" data-placement="bottom" >
-                        Hacker News
-                </a>
+                        Hacker News  {localStorage.getItem('userName')?(<span>({localStorage.getItem('userName')})</span>):''}
+
+                </a> 
                 { props.location.pathname==='/dashboard'?
                 <div className="SearchHeader SearchHeader_container">
                     <span className="SearchIcon">
@@ -20,35 +21,32 @@ function Header(props) {
                                 <input type="search" value={props.searchQueryValue} onChange={props.inputChange} placeholder="Search stories by title, url or author" className="SearchInput" />
                                     <div className="PoweredBy">
                                      </div>
-                </div>
-     :''
+                </div> :''
                 }
                     <div className="collapse navbar-collapse justify-content-end" >
+                    {!localStorage.getItem('userName')? (  
                         <ul className="navbar-nav">
+                       
                             <li className="nav-item">
                                 <Link to="/" className="nav-link">Login</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/signup" className="nav-link">SignUp</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to="/dashboard" className="nav-link">dashboard</Link>
+                            </ul>
+                        ):(
+                            <ul className="navbar-nav">
+                                 <li className="nav-item">
+                                <Link to="/dashboard" className="nav-link">Dashboard</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/history" className="nav-link">History</Link>
                             </li>
-                        </ul>
-                    </div>
-                    {/* <div className="collapse navbar-collapse justify-content-end" >
-                  <ul className="navbar-nav">
-                      <li className="nav-item">
-                        <a className="nav-link"></a>
-                       </li>
-                    <li className="nav-item">
-                      <a  className="nav-link">Logout</a>
-                    </li>
-                  </ul>
-                </div> */}
+                            <li className="nav-item">
+                          <Link to="/"  onClick={()=>{localStorage.clear();}}className="nav-link">Logout</Link>
+                            </li>
+                        </ul>)
+                    }  </div>
                 </div>
 
                     </nav>

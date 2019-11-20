@@ -1,6 +1,7 @@
 import React ,{useState,useEffect}from 'react'
 import Pagination from 'react-bootstrap/Pagination'
 import {Link} from 'react-router-dom'
+import { useHistory } from 'react-router/esm/react-router';
 function Dashboard(props) {
     const [activePage,setActivePage]=useState(1);
     const [searchData,setSearchData] =useState([]);
@@ -9,8 +10,12 @@ function Dashboard(props) {
     const [sortValue,setSortValue]=useState('');
     const [dateRangeValue,setDateRangeValue]=useState('');
   
-  
-    useEffect( () => {    
+    let history = useHistory();
+    useEffect( () => {  
+      if(!localStorage.getItem('userName')){
+        history.push('/');
+      }
+      props.showLoader();
       const abortController = new AbortController();
       const signal = abortController.signal
       let request;
@@ -54,6 +59,7 @@ function Dashboard(props) {
    const  getFeedData=async(data,signal)=>{
     let response = await fetch(`https://hn.algolia.com/api/v1/${data}`,{signal:signal})
     let resData  = await response.json()
+    props.hideLoader()
       setSearchData(resData.hits)
     setTotalPages(resData.nbPages)
     console.log(resData,totalPages)
@@ -140,8 +146,8 @@ items.push(<React.Fragment key="bottom"><Pagination.Next key="next"/><Pagination
                        if(!(data.url==null || data.url=="")&& !(data.title ==null || data.title ==""))
                        return (<div key={index} className="feeds-info">
                          <div style={{flexDirection:'row',display:"flex"}}>  <div style={{fontSize:18}}>
-                           <Link to={ `/items/${data.objectID}`} onClick={()=>saveLink(data)}> {data.title} </Link></div>
-                           <div style={{color:"grey",marginLeft:5}}> (<a href={data.url} target="blank" onClick={(event) => {}}>{data.url}  </a>)</div>
+                           <Link to={ `/items/${data.objectID}`} onClick={()=>saveLink(data)} style={{color:"black"}}> {data.title} </Link></div>
+                           <div style={{color:"grey",marginLeft:5}}> (<a href={data.url} style={{color:"black"}} target="blank" onClick={(event) => {}}>{data.url}  </a>)</div>
                            </div>
                            <div style={{color:"grey"}}>{data.points} | {data.author} | {Math.ceil(new Date().getUTCFullYear()-new Date(data.created_at).getUTCFullYear())}Years Ago. | {data.num_comments} comments</div>
                            </div>)

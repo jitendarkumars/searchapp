@@ -13,9 +13,6 @@ class UserDAO {
      const data= await users.insertOne(userInfo)
       return { success: true ,data:data.ops}
     } catch (e) {
-      if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
-        return { error: "A user with the given email already exists." }
-      }
       console.error(`Error occurred while adding new user, ${e}.`)
       return { error: e }
     }
@@ -27,13 +24,23 @@ class UserDAO {
      const resp= await users.find({email:email})
       return  await resp.toArray() 
     } catch (e) {
-      if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
-        return { error: "A user with the given email already exists." }
-      }
       console.error(`Error occurred while adding new user, ${e}.`)
       return { error: e }
     }
   }
+
+  async getUserDetails(userNameOrMail,password) {
+    try {
+     const resp= await users.find({
+      $and:[{ $or:[{userName:userNameOrMail},{email:userNameOrMail}] },{password:password}]
+    })
+      return  await resp.toArray() 
+    } catch (e) {
+      console.error(`Error occurred while adding new user, ${e}.`)
+      return { error: e }
+    }
+  }
+  
 }
 
 module.exports = new UserDAO();

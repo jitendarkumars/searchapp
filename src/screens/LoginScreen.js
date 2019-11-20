@@ -1,19 +1,35 @@
-import React from 'react'
+import React, { useEffect }  from 'react'
 import Input from '../components/Input'
 import useForm from 'react-hook-form'
 import {toast} from 'react-toastify';
+import { useHistory } from 'react-router/esm/react-router';
 function LoginScreen(props) {
+  let history = useHistory();
+  useEffect(() => {
+    if(localStorage.getItem('userName')){
+      history.push('/dashboard');
+    }
+  }, )
     const { register, handleSubmit, watch, errors } = useForm({ submitFocusError:true})
-    const onSubmit = data => { toast("fsdfsd");
-    toast.success("Success Notification !", {
-        position: toast.POSITION.TOP_CENTER
-      });
+    const onSubmit = async(data) => {       
+      const responseData=await fetch(`http://localhost:8080/api/users/login?userNameOrMail=${data.userNameEmail}&password=${data.password}`)
+        console.log(responseData.status)
+      if(responseData.status!=200){
+        let jsonData =await responseData.json()
+        toast.error(jsonData.error, {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }else{
+     let jsonData= await responseData.json()
+        localStorage.setItem("userName",jsonData.data.userName);
+        toast.success("Logged In Successfully", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }
+   
  
-      toast.error("Error Notification !", {
-        position: toast.POSITION.TOP_LEFT
-      });
+   
 
-      localStorage.setItem("userName",data.userNameEmail);
  
     console.log(data) }
 
