@@ -14,7 +14,7 @@ export default function SignupScreen(props) {
       }
     }, )
     const onSubmit = async(data) => {       
-        const responseData=await fetch(`http://localhost:8080/api/users/signup`,
+        const responseData=await fetch(` https://search-app-node.herokuapp.com/api/users/signup`,
         {
             headers: {
               'Accept': 'application/json',
@@ -42,7 +42,7 @@ export default function SignupScreen(props) {
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="container">
                 <div className="row">
-                    <h4>Login with UserName/Email</h4>
+                    <h4>Enter Your Details</h4>
                     <Input refs={register({ required: true, minlength: 5 })} name="userName" type="text" placeholder="UserName" iconClassName="fa fa-user" />
                     {errors.userName ? <span className="invalid"> UserName is required</span> : ''}
                     <Input refs={register({ required: true, minlength: 5 })} name="email" type="text" placeholder="Email" iconClassName="fa fa-envelope" />
