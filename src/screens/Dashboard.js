@@ -9,7 +9,10 @@ function Dashboard(props) {
     const [sortValue,setSortValue]=useState('');
     const [dateRangeValue,setDateRangeValue]=useState('');
   
+  
     useEffect( () => {    
+      const abortController = new AbortController();
+      const signal = abortController.signal
       let request;
       let time="";
       switch(dateRangeValue){
@@ -40,14 +43,16 @@ function Dashboard(props) {
  
       }
     
-      getFeedData(request);
+      getFeedData(request,signal);
    
-    
+    return function cleanup(){
+      abortController.abort();
+    }
     
     },[activePage,typeValue,dateRangeValue,sortValue,props.query])
 
-   const  getFeedData=async(data)=>{
-    let response = await fetch(`https://hn.algolia.com/api/v1/${data}`)
+   const  getFeedData=async(data,signal)=>{
+    let response = await fetch(`https://hn.algolia.com/api/v1/${data}`,{signal:signal})
     let resData  = await response.json()
       setSearchData(resData.hits)
     setTotalPages(resData.nbPages)

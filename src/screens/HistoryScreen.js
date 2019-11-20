@@ -4,7 +4,7 @@ function HistoryScreen() {
     let historyData=JSON.parse(localStorage.getItem("historyData"))||[]
     const reslt=(
         historyData.length>0? (
-              <div className="dashboard-container">
+              <div  className="dashboard-container">
                   Last 5 News Search
            <div className="feeds-card">
             {historyData.map((data,index)=>{
@@ -34,7 +34,7 @@ function HistoryScreen() {
                 </div>
         
             
-            ) :<div>No Data Found</div>
+            ) :<div style={{justifyContent:'center',display:'flex'}} className="dashboard-container">No Data Found</div>
     )
     return (
         <div>

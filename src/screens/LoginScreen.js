@@ -12,8 +12,13 @@ function LoginScreen(props) {
       toast.error("Error Notification !", {
         position: toast.POSITION.TOP_LEFT
       });
+
+      localStorage.setItem("userName",data.userNameEmail);
  
     console.log(data) }
+
+
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
         <div className="container">
