@@ -23,6 +23,7 @@ function App() {
     <Route path='/' render={routeProps =>
         <Header {...routeProps} 
         searchQueryValue={searchQuery}
+        hideLoader={hideLoader}
       inputChange={(event)=>{setSearchQuery(event.target.value)}}
       />} />
       {/* <Header 

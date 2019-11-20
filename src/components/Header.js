@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 
 function Header(props) {
             console.log(props)
+            props.hideLoader();
         return (
             <nav className="navbar navbar-expand-lg fixed-top  " color-on-scroll="300" >
                 <div className="container header-container">
