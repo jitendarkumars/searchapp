@@ -2,7 +2,7 @@ let users;
 class UserDAO {
   async injectDB(conn) {
     try {
-      users = await conn.db('algoliaSearch').collection("users")
+      users = await conn.db('heroku_hz2hwsrh').collection("users")
       } catch (e) {
       console.error(`Unable to establish collection handles in userDAO: ${e}`)
     }

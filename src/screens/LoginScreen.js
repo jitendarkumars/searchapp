@@ -12,7 +12,7 @@ function LoginScreen(props) {
   }, )
     const { register, handleSubmit, watch, errors } = useForm({ submitFocusError:true})
     const onSubmit = async(data) => {       
-      const responseData=await fetch(`http://localhost:8080/api/users/login?userNameOrMail=${data.userNameEmail}&password=${data.password}`)
+      const responseData=await fetch(`https://search-app-node.herokuapp.com/api/users/login?userNameOrMail=${data.userNameEmail}&password=${data.password}`)
         console.log(responseData.status)
       if(responseData.status!=200){
         let jsonData =await responseData.json()

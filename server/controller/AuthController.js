@@ -12,7 +12,7 @@ class AuthController {
             const resp = await UserDAO.addUser(req.body);
             res.send(resp)
         } catch (e) {
-            res.send({ error: e });
+            res.status(422).send({ error: e });
         }
     }
     async login(req, res, next) {
@@ -28,7 +28,7 @@ class AuthController {
             const resp = await UserDAO.addUser(req.body);
             res.send(resp)
         } catch (e) {
-            res.send({ error: e });
+            res.status(422).send({ error: e });
         }
     }
 }
